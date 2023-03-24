@@ -7,11 +7,6 @@ app.engine('hbs', hbs());
 app.set('view engine', 'hbs');
 
 app.use(express.static(path.join(__dirname, '/public')));
-
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -22,12 +17,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/hello/:name', (req, res) => {
-    res.render('hello', { name: req.params.name });
+app.get('/', (req, res) => {
+    res.render('index');
 });
 
 app.get('/hello/:name', (req, res) => {
-    res.render('hello');
+    res.render('hello', { name: req.params.name });
 });
 
 app.get('/about', (req, res) => {
